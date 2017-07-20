@@ -135,36 +135,10 @@
     <script src="/static/js/jquery-3.1.1.js"></script>
     <script src="/static/js/bootstrap.js"></script>
     <script type="application/javascript">
-			$(".a_btn").click(function(){
-				var a_id= "../"+this.id+".html";
-				$('#div_1').empty().load(a_id);
-			});
-			var formData = new FormData();
-			var name = $("input").val();
-			formData.append("file",$("#upload")[0].files[0]);
-			formData.append("name",name);
-			$.ajax({ 
-				url : Url, 
-				type : 'POST', 
-				data : formData, 
-				// 告诉jQuery不要去处理发送的数据
-				processData : false, 
-				// 告诉jQuery不要去设置Content-Type请求头
-				contentType : false,
-				beforeSend:function(){
-				console.log("正在进行，请稍候");
-				},
-				success : function(responseStr) { 
-				if(responseStr.status===0){
-				console.log("成功"+responseStr);
-				}else{
-				console.log("失败");
-				}
-				}, 
-				error : function(responseStr) { 
-				console.log("error");
-				} 
-			});
+          $(".a_btn").click(function(){
+              var a_id= "../"+this.id+".html";
+              $('#div_1').empty().load(a_id);
+          });
      </script>
   </body>
 </html>
