@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>运维管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 10px;
+        padding-bottom: 40px;
+        background-color: #FFFFFF
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+            <div class="span2">
+              <!--Sidebar content-->
+                <a href="main.html"><img src="/static/img/timg.jpg" class="img-rounded"></a>
+                <ul class="nav nav-tabs nav-stacked">
+                  <li class="nav-header">List header</li>
+                  <li ><a href="../main.html">首页</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本0</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本1</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本2</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本3</a></li>
+				  <li ><a href="javascript:void(0)" id="log" class="a_btn">日志</a> </li>
+				  <li ><a href="javascript:void(0)" id="config" class="a_btn">设置</a></li>
+                  
+				  <!--
+                  <li ><a  href="javascript:void(0)" id="mails" name="a_1" class="a_btn">邮件</a></li>
+                 <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本</a></li>
+                  <li ><a href="javascript:void(0)" id="servers" class="a_btn">运行状态</a></li>
+                  <li><a href="javascript:void(0)" id="user_list" class="a_btn">用户列表</a></li>
+                  <li><a href="javascript:void(0)" id="server_list" class="a_btn">服务器列表</a></li>
+
+				  -->
+
+                </ul>
+            </div>
+            <div class="span8" >
+              <!--Body content-->
+                <div class="page-header" >
+                    <div class="row-fluid">
+                        <div class="span7">
+                            <h1><small>常用脚本</small></h1>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="div_1" name="div_1" class="hero-unit">
+               
+                 <p>关于郑州我知道的不多，为了爱情曾经去过那里<br/>
+					多少次在火车上路过这城市，一个人悄悄地想起她<br/>
+					她说她喜欢郑州冬天的阳光，巷子里飘满煤炉的味道<br/>
+					雾气穿过她年轻的脖子，直到今天都没有散去<br/>
+				 </p>
+                
+                </div>
+                 
+
+
+                <div  style="align-self: center" >
+                        <address>
+                          <strong>Weibo, Inc.</strong><br>
+                          795 Folsom Ave, Suite 600<br>
+                          San Francisco, CA 94107<br>
+                          <abbr title="Phone">P:</abbr> (+86) 18739974676
+                        </address>
+
+                        <address>
+                          <strong>Full Name</strong><br>
+                          <a href="mailto:#">anwenjie@esunny.cc</a>
+                        </address>
+                    </div>
+                </div>
+
+            </div>
+          <!--右侧显示-->
+            <div class="span2">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script type="application/javascript">
+			$(".a_btn").click(function(){
+				var a_id= "../"+this.id+".html";
+				$('#div_1').empty().load(a_id);
+			});
+			var formData = new FormData();
+			var name = $("input").val();
+			formData.append("file",$("#upload")[0].files[0]);
+			formData.append("name",name);
+			$.ajax({ 
+				url : Url, 
+				type : 'POST', 
+				data : formData, 
+				// 告诉jQuery不要去处理发送的数据
+				processData : false, 
+				// 告诉jQuery不要去设置Content-Type请求头
+				contentType : false,
+				beforeSend:function(){
+				console.log("正在进行，请稍候");
+				},
+				success : function(responseStr) { 
+				if(responseStr.status===0){
+				console.log("成功"+responseStr);
+				}else{
+				console.log("失败");
+				}
+				}, 
+				error : function(responseStr) { 
+				console.log("error");
+				} 
+			});
+     </script>
+  </body>
+</html>
