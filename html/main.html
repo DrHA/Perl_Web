@@ -62,21 +62,24 @@
                 <a href="main.html"><img src="/static/img/timg.jpg" class="img-rounded"></a>
                 <ul class="nav nav-tabs nav-stacked">
                   <li class="nav-header">List header</li>
-                  <li ><a href="../main.html">首页</a></li>
-				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本0</a></li>
-				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本1</a></li>
-				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本2</a></li>
-				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本3</a></li>
-				  <li ><a href="javascript:void(0)" id="log" class="a_btn">日志</a> </li>
-				  <li ><a href="javascript:void(0)" id="config" class="a_btn">设置</a></li>
+                  <li ><a href="main.pl">首页</a></li>
+				 
+				  
+				  
+				  
                   
 				  <!--
+				   <li ><a href="javascript:void(0)" id="scripts" class="a_btn">筛选聊天记录</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">品种转换币种脚本</a></li>
                   <li ><a  href="javascript:void(0)" id="mails" name="a_1" class="a_btn">邮件</a></li>
                  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本</a></li>
                   <li ><a href="javascript:void(0)" id="servers" class="a_btn">运行状态</a></li>
                   <li><a href="javascript:void(0)" id="user_list" class="a_btn">用户列表</a></li>
                   <li><a href="javascript:void(0)" id="server_list" class="a_btn">服务器列表</a></li>
-
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本2</a></li>
+				  <li ><a href="javascript:void(0)" id="scripts" class="a_btn">脚本3</a></li>
+				  <li ><a href="javascript:void(0)" id="log" class="a_btn">日志</a> </li>
+				  <li ><a href="javascript:void(0)" id="config" class="a_btn">设置</a></li>
 				  -->
 
                 </ul>
@@ -92,13 +95,21 @@
                     </div>
                 </div>
                 <div id="div_1" name="div_1" class="hero-unit">
-               
-                 <p>关于郑州我知道的不多，为了爱情曾经去过那里<br/>
-					多少次在火车上路过这城市，一个人悄悄地想起她<br/>
-					她说她喜欢郑州冬天的阳光，巷子里飘满煤炉的味道<br/>
-					雾气穿过她年轻的脖子，直到今天都没有散去<br/>
-				 </p>
-                
+               <p>此页面用来筛选上月聊天记录，在这里上传导出的聊天文件（只支持txt格式）<p>
+					<FORM METHOD="POST" id="form1" name="form1" ENCTYPE="multipart/form-data" ACTION="main.pl">
+					<div class="form-group">
+						
+							<input type="file" id="FILE" name="FILE">
+							<p class="help-block">请在这里选择您要筛选的文件</p>
+						  </div>
+						
+						<button type="submit" class="btn btn-default">筛选</button>
+					 </form>
+					
+					<TMPL_IF NAME="filename"> 
+						<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
+					</TMPL_IF>
+			
                 </div>
                  
 
