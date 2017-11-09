@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div id="div_1" name="div_1" class="hero-unit">
-               <p>此页面用来筛选上月聊天记录，在这里上传导出的聊天文件（只支持txt格式）<p>
+               <p>此页面用来筛选<TMPL_VAR NAME='year'>年<TMPL_VAR NAME='mon'>月份的个人聊天记录，在这里上传导出的聊天文件（只支持txt格式）</p>
 					<FORM METHOD="POST" id="form1" name="form1" ENCTYPE="multipart/form-data" ACTION="main.pl">
 					<div class="form-group">
 						
@@ -107,8 +107,13 @@
 					 </form>
 					
 					<TMPL_IF NAME="filename"> 
-						<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
+						<TMPL_IF NAME="allow"> 
+							<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
+						<TMPL_ELSE NAME="allow"> 
+							<p style="color:red">文件格式不对，请导出txt格式！</p>
+						</TMPL_IF> 
 					</TMPL_IF>
+
 			
                 </div>
                  
