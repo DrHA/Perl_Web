@@ -9,25 +9,21 @@ my $user = 'sa';
 ## 密码
 my $auth = '123456'; 
 
-
-# connect
-my $dbh = DBI->connect("DBI:mysql:database=db2;host=localhost", "joe", "guessme", {'RaiseError' => 1});
-
-# execute INSERT query
-my $rows = $dbh->do("INSERT INTO users (id, username, country) VALUES (4, 'jay', 'CZ')");
-print "$rows row(s) affected ";
-
-# execute SELECT query
-my $sth = $dbh->prepare("SELECT username, country FROM users");
-$sth->execute();
-
-# iterate through resultset
-# print values
-while(my $ref = $sth->fetchrow_hashref()) {
-    print "User: $ref-> ";
-    print "Country: $ref-> ";
-    print "---------- ";
-}
-
-# clean up
-$dbh->disconnect();
+my $driver="DBI:mysql"; 
+my $database="perl_test"; 
+my $user="root"; 
+my $host="localhost"; 
+my $passwd="root"; 
+my $rules="alert_rules"; 
+my $dbh = DBI->connect("$driver:database=$database;host=$host;user=$user;password=$passwd") 
+or die "Can't connect: " . DBI->errstr; 
+my $sth=$dbh->prepare("select app_name,receivers from $rules "); 
+$sth->execute() or die "Can't prepare sql statement". $sth->errstr; 
+my $sth=$dbh->prepare("select app_name,receivers from $rules "); 
+$sth->execute() or die "Can't prepare sql statement". $sth->errstr; 
+# 打印获取的数据 
+while(@recs=$sth->fetchrow_array){ 
+print $recs[0].":".$recs[1]."\n"; 
+} 
+$sth->finish(); 
+$dbh->disconnect(); 

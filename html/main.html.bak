@@ -95,8 +95,8 @@
                     </div>
                 </div>
                 <div id="div_1" name="div_1" class="hero-unit">
-                 <h4>此页面用来筛选<TMPL_VAR NAME='year'>年<TMPL_VAR NAME='mon'>月份的个人聊天记录，在这里上传导出的聊天文件（只支持txt格式）</h4> 
-						<form METHOD="POST" id="form1" name="form1" ENCTYPE="multipart/form-data" ACTION="main.pl">
+               <h4>此页面用来筛选<TMPL_VAR NAME='year'>年<TMPL_VAR NAME='mon'>月份的个人聊天记录，在这里上传导出的聊天文件（只支持txt格式）</h4> 
+					<FORM METHOD="POST" id="form1" name="form1" ENCTYPE="multipart/form-data" ACTION="main.pl">
 						<div class="input-group">
 							
 							<span class="input-group-addon"  id="sizing-addon2">选择您要筛选的文件:</span>
@@ -104,48 +104,61 @@
 						 </div>
 
 						<div class="input-group">
-						     <span class="input-group-addon"  id="sizing-addon2">筛选结果中要统计的关键字（选填）:</span>
+						     <span class="input-group-addon"  id="sizing-addon2">要统计的关键字（选填）:</span>
 						     <input type="text" class="form-control" id="key_word" name="key_word" placeholder="如有多个关键字，请用逗号分隔" aria-describedby="sizing-addon2">
 						</div>
 						
 						
-						<button type="submit" class="btn btn-primary">筛选</button>
+						<button type="submit" class="btn btn-info">筛选</button>
 					 </form>
 
-			
                 </div>
-				<TMPL_IF NAME="filename"> 
-                 <div id="div_1" name="div_1" class="hero-unit">
+                <div id="div_1" name="div_1" class="hero-unit">
 					<h4>筛选结果</h4>
-						
+					<!--<TMPL_IF NAME="filename"> 
+							<TMPL_IF NAME="allow"> 
 							
-						
-						<TMPL_IF NAME="allow"> 
-							<table class="table table-condensed" >
-							  <tr>
-								<th>关键字</th>
-								<TMPL_LOOP NAME=RATES>
-								<th><TMPL_VAR NAME=key_word></th>
-								</TMPL_LOOP>
-							  </tr>
-							  <tr>
-								
-								<td>频率</td>
-								<TMPL_LOOP NAME=RATES>
-								<td><TMPL_VAR NAME=rate></td>
-								</TMPL_LOOP>
-							  </tr>
+							<TMPL_IF NAME="result"> 
+							<table class="table table-striped">
+								<tr>
+									<td>关键字</td>
+									<TMPL_LOOP NAME="result">
+										<td><TMPL_VAR NAME="key_word"></td>
+									</TMPL_LOOP>
+								</tr>
+								<tr>
+									<td>频率</td>
+									<TMPL_LOOP NAME="result">
+										<td><TMPL_VAR NAME="rate"></td>
+									</TMPL_LOOP>
+								</tr>
 							</table>
+							<TMPL_IF NAME="result"> 
 							<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
 						<TMPL_ELSE NAME="allow"> 
 							<p style="color:red">文件格式不对，请导出txt格式！</p>
 						</TMPL_IF> 
 						
+					</TMPL_IF> -->
+					<TMPL_IF NAME="filename"> 
+							<TMPL_IF NAME="allow"> 
+								<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
+							<TMPL_ELSE> 
+								<p style="color:red">文件格式不对，请导出txt格式！</p>
+							</TMPL_IF> 
+					</TMPL_IF>
+				  <!--
+					<TMPL_IF NAME="allow"> 
+								<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
 					
+								<p style="color:red">文件格式不对，请导出txt格式！</p>
+					</TMPL_IF> 
+					-->
 				</div>
-				</TMPL_IF>
+
+
                 <div  style="align-self: center" >
-                         <address>
+                        <address>
                           <strong>Dr.Ha</strong><br>
                           58 Dongming Ave, Suite 600<br>
                           Zhengzhou , Henan 45000<br>
@@ -155,7 +168,7 @@
                         <address>
                           <strong>Full Name</strong><br>
                           <a href="mailto:#">anwenjie@esunny.cc</a>
-                        </add
+                        </address>
                     </div>
                 </div>
 

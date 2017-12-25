@@ -104,7 +104,7 @@
 						 </div>
 
 						<div class="input-group">
-						     <span class="input-group-addon"  id="sizing-addon2">筛选结果中要统计的关键字（选填）:</span>
+						     <span class="input-group-addon"  id="sizing-addon2">要统计的关键字（选填）:</span>
 						     <input type="text" class="form-control" id="key_word" name="key_word" placeholder="如有多个关键字，请用逗号分隔" aria-describedby="sizing-addon2">
 						</div>
 						
@@ -117,30 +117,12 @@
 				<TMPL_IF NAME="filename"> 
                  <div id="div_1" name="div_1" class="hero-unit">
 					<h4>筛选结果</h4>
-						
-							
-						
+					
 						<TMPL_IF NAME="allow"> 
-							<table class="table table-condensed" >
-							  <tr>
-								<th>关键字</th>
-								<TMPL_LOOP NAME=RATES>
-								<th><TMPL_VAR NAME=key_word></th>
-								</TMPL_LOOP>
-							  </tr>
-							  <tr>
-								
-								<td>频率</td>
-								<TMPL_LOOP NAME=RATES>
-								<td><TMPL_VAR NAME=rate></td>
-								</TMPL_LOOP>
-							  </tr>
-							</table>
 							<a href="main1.pl?name=<TMPL_VAR NAME='filename'>" > 点此下载筛选过以后的聊天文件 </a>
 						<TMPL_ELSE NAME="allow"> 
 							<p style="color:red">文件格式不对，请导出txt格式！</p>
 						</TMPL_IF> 
-						
 					
 				</div>
 				</TMPL_IF>

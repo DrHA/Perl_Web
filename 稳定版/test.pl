@@ -10,8 +10,6 @@ sub generate{
 	my $s_file = shift();
 	my $year = shift();
 	my $mon = shift();
-	my $key_word = shift();
-	my %result_hash;
 	open FILE,"<:encoding(utf-8)" ,"u_file/$s_file.txt" or die "111no  such $!\n";
 
 	if(!-d "message/$s_file") {
@@ -77,31 +75,22 @@ sub generate{
 		
 	}
 	print FI $mes;
-	#sleep(1);
+	sleep(1);
 	close FI;
-	#summary
 	print FILE1 $s_str;
-	#sleep(1);
+	sleep(1);
 	close FILE1;
 	
-	# 频率
-	#if($key_word){
-	#	my $result = get_rate($s_str,$key_word);
-	#	$result_hash{rate} = $result;
-	#}
-
 	
 	if($mes eq ""){
 		unlink("message/$s_file/$filename");
 	}
 	system("tar -czf message/$s_file".'.tar.gz'." message/$s_file");
 	system("rm -rf message/$s_file");
-	#sleep(1);
+	sleep(1);
 	close FILE;
 	
-	$result_hash{file_name} = "message/".$s_file.".tar.gz";
-	
-	return $s_str;
+	return "message/".$s_file.".tar.gz";
 	
 }
 # 验证文件格式是否正确 
@@ -117,39 +106,4 @@ sub get_formate{
 	}	
 	return $allow;
 }
-
-#  查找关键字的频率
-sub get_rate{
-	# 获取文本
-	my $r_string = shift();
-	my $r_string=decode("gb2312",$r_string);
-	$r_string=encode("utf8",$r_string);
-	# 获取关键字
-	my $tmp_key_word = shift();
-	my @key_word = split(/,/,$tmp_key_word);
-	#my @result;
-	my @rates;
-	#my $tmp;
-	foreach(@key_word){
-		#my $dat=encode("gb2312",$_);
-		#print $dat."    ".$_;
-		my $count=($r_string =~ s/$_/$_/g);
-		if(!$count){
-			$count=0;
-		}
-		my  %row_data;
-		$row_data{key_word} = $_;
-		$row_data{rate} = $count;		
-		push(@rates,\%row_data);
-	}
-	#my %row_data; # 使用新的散列
-	# fill in this row
-	#$row_data{key_word} = shift @key_word;
-	#$row_data{rate} = shift @rates;
-	# 先将数据保存在散列中，然后在压入数组
-	#push(@result, \%row_data);
-	#return \@result;
-	return \@rates;
-}
-
 1,

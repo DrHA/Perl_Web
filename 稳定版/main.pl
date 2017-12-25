@@ -26,8 +26,6 @@ my $req = new CGI;
 if($ENV{REQUEST_METHOD} eq "POST"){
 	#print $ENV{REQUEST_METHOD};
 	my $file = $req->param("FILE");
-	my $key_word = $req->param("key_word");
-	## 判断格式是否正确
 	my $allow = get_formate($file,"txt");
 	$template->param(allow => $allow); #1
 	$template->param(filename => $file);
@@ -41,28 +39,14 @@ if($ENV{REQUEST_METHOD} eq "POST"){
 		}
 		sleep(1);
 		close (OUTFILE);
-
-		## 获取筛选后的结果
-		my $s_str = generate($r_int,$year,$mon);
-		
-		## 分析频率
-		
+		#generate($r_int);
+		generate($r_int,$year,$mon);
 		unlink("u_file/$r_int.txt");
 		#my $re_file = $gfile; 
 		my $re_file2 = "message/".$r_int.".tar.gz";
 		#print $re_file2;
 		$template->param(filename => $re_file2);
-		## 分析频率
-		if($key_word ne  ""){
-			my %result_hash;	
-			
-			my $result = get_rate($s_str,$key_word);
-			#$result_hash{rate} = $result;
-			#my $rates = $tmp_result->{rate};
-			$template->param(RATES => $result);
-		}
 	}   
 }
 print "Content-Type: text/html\n\n", $template->output;
-
 
